@@ -72,7 +72,7 @@ up:
 # stop all containers
 .PHONY: down
 down:
-	cd $(LARADOCK) && docker-compose stop && docker-compose rm -f
+	cd $(LARADOCK) && docker-compose down
 
 # show laravel's log in realtime
 .PHONY: log
