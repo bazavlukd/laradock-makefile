@@ -4,6 +4,8 @@ LARADOCK=laradock
 PHP_CONTAINER_NAME=$(LARADOCK)_php-fpm_1
 DB_CONTAINER_NAME=$(LARADOCK)_mysql_1
 WORKSPACE_CONTAINER_NAME=$(LARADOCK)_workspace_1
+REDIS_CONTAINER_NAME=$(LARADOCK)_redis_1
+HORIZON_CONTAINER_NAME=$(LARADOCK)_laravel-horizon_1
 NODE_IMAGE_NAME=node
 
 # mysql variables
@@ -114,6 +116,16 @@ npm-install:
 .PHONY: watch-js
 watch-js:
 	docker exec -it $(WORKSPACE_CONTAINER_NAME) npm run-script watch-poll
+#------------------
+
+# queue related targets
+.PHONY: queue-flush
+queue-flush:
+	docker exec -it $(REDIS_CONTAINER_NAME) redis-cli flushall
+
+.PHONY: horizon
+horizon:
+	docker exec -it $(WORKSPACE_CONTAINER_NAME) bash -c 'php artisan horizon'
 #------------------
 
 # some artisan helpers
