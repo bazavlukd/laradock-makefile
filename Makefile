@@ -50,6 +50,7 @@ install-laradock:
 	sed -i "/DB_DATABASE=.*/c\DB_DATABASE=$(DB_DATABASE)" .env && \
 	sed -i "/DB_USERNAME=.*/c\DB_USERNAME=$(DB_USERNAME)" .env && \
 	sed -i "/DB_PASSWORD=.*/c\DB_PASSWORD=$(DB_PASSWORD)" .env && \
+	sed -i "/REDIS_HOST=.*/c\REDIS_HOST=redis" .env && \
 	chmod -R 777 storage
 
 # run initial scripts

@@ -31,3 +31,5 @@ You can do this with:
 * `test` - run test with phpunit
 * `install-laradock` - install laradock
 * `initial-build` - run initial scripts to build the project
+* `queue-flush` - flush redis queue
+* `horizon` - run laravel horizon queue
