@@ -4,11 +4,25 @@ Makefile with some useful commands for [Laradock](http://laradock.io/)
 
 ## Installation
 
-Just copy the `Makefile` from this repo to your project root.
+Copy the `Makefile` from this repo to your project root.
 
 You can do this with:
 
 `wget https://raw.githubusercontent.com/bazavlukd/laradock-makefile/master/Makefile`
+
+Download Laradock:
+
+`make install-laradock`
+
+Run all containers:
+
+`make up`
+
+Run initial scripts to build the project
+
+`make initial-build`
+
+Enjoy =)
 
 ## Commands available
 * `up` - run all containers
@@ -33,3 +47,4 @@ You can do this with:
 * `initial-build` - run initial scripts to build the project
 * `queue-flush` - flush redis queue
 * `horizon` - run laravel horizon queue
+* `up-ngrok` - run ngrok to expose nginx webserver on port 80
