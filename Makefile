@@ -20,7 +20,7 @@ LIST_OF_CONTAINERS_TO_RUN=nginx mysql redis laravel-horizon workspace
 
 
 # some variables that required by installation target
-LARADOCK_REPO=https://github.com/Laradock/laradock.git
+LARADOCK_REPO=https://github.com/bazavlukd/laradock.git
 
 # the first target is the one that executed by default
 # when uesr call make with no target.
@@ -61,10 +61,10 @@ install-laradock:
 # install js dependencies
 .PHONY: initial-build
 initial-build:
+	docker exec -it $(WORKSPACE_CONTAINER_NAME) composer install
 	docker exec -it $(PHP_CONTAINER_NAME) bash -c 'php artisan key:generate'
 	docker exec -it $(DB_CONTAINER_NAME) mysql -u root -proot -e "ALTER USER '$(DB_USERNAME)' IDENTIFIED WITH mysql_native_password BY '$(DB_PASSWORD)';";
 	docker exec -it $(PHP_CONTAINER_NAME) bash -c "php artisan migrate --seed"
-	docker exec -it $(WORKSPACE_CONTAINER_NAME) composer install
 	docker exec -it $(WORKSPACE_CONTAINER_NAME) npm install
 
 # run all containers
@@ -126,6 +126,7 @@ queue-flush:
 
 .PHONY: horizon
 horizon:
+	docker exec -it $(REDIS_CONTAINER_NAME) redis-cli flushall
 	docker exec -it $(WORKSPACE_CONTAINER_NAME) bash -c 'php artisan horizon'
 #------------------
 
@@ -163,3 +164,8 @@ test:
 .PHONY: composer-install
 composer-install:
 	docker exec -it $(WORKSPACE_CONTAINER_NAME) composer install
+
+# run ngrok to expose nginx webserver on port 80
+.PHONY: up-ngrok
+up-ngrok:
+	docker exec -it $(WORKSPACE_CONTAINER_NAME) ngrok http http://nginx:80
