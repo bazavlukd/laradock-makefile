@@ -8,19 +8,27 @@ Copy the `Makefile` from this repo to your project root.
 
 You can do this with:
 
-`wget https://raw.githubusercontent.com/bazavlukd/laradock-makefile/master/Makefile`
+```
+wget https://raw.githubusercontent.com/bazavlukd/laradock-makefile/master/Makefile`
+```
 
 Download Laradock:
 
-`make install-laradock`
+```
+make install-laradock`
+```
 
 Run all containers:
 
-`make up`
+```
+make up
+```
 
 Run initial scripts to build the project
 
-`make initial-build`
+```
+make initial-build
+```
 
 Enjoy =)
 
