@@ -15,7 +15,7 @@ wget https://raw.githubusercontent.com/bazavlukd/laradock-makefile/master/Makefi
 Download Laradock:
 
 ```
-make install-laradock`
+make install-laradock
 ```
 
 Run all containers:
